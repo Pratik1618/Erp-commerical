@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Required Materail</title>
+  <link rel="stylesheet" href="AddTemporal.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</head>
+
+
+<body>
+   <div class="whole-container">
+  <div class="container">
+    <input type="hidden" id="stateId">
+    <h1>Required Material </h1>
+    <form id="storeForm">
+      <div>
+        <label for="materailName">Materail Name:</label>
+          <select id="materailName" name="materailName" required>
+            <option value="">Select a Materail</option>
+          </select>
+
+      </div>
+      <div>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required />
+      </div>
+      <div>
+        <label for="rate">Rate:</label>
+        <input type="number" id="rate" name="rate" required />
+      </div>
+      <div>
+        <label for="charges">Charges Type:</label>
+        <select id="charges" name="charges" required>
+          <option value="">Select a Charges Type</option>
+          <option value="fix-value">fix-value</option>
+          <option value="percentage">percentage</option>
+          <option value="Rate/sqft">Rate/sqft</option>
+        </select>
+      </div>
+      <div>
+        <label for="fix-value">Fix-Value:</label>
+        <input type="number" id="fix-value" name="fix-value"/>
+      </div>
+      <div>
+        <label for="percentage">Percentage:</label>
+        <input type="number" id="percentage" name="percentage"/>
+      </div>
+      <div>
+        <label for="sqft">Area sqft:</label>
+        <input type="number" id="sqft" name="sqft" />
+      </div>
+      <div>
+        <label for="sqftRate">Rate per sqft:</label>
+        <input type="number" id="sqftRate" name="sqftRate"/>
+      </div>
+
+      <!-- Error message container -->
+      <div id="error-message" class="error"></div>
+      <!-- Success message container -->
+      <div id="success-message" class="success"></div>
+      <button type="submit" id="submit">Submit</button>
+      <!-- <button type="button"  class="save" onclick="saveEdit()">Save</button>
+      <button type="button" class="cancel" onclick="cancelEdit()">Cancel</button> -->
+    </form>
+  </div>
+  <div class="container">
+    <h2>MATERAIL LIST</h2>
+    <button id="exportButton">Export to Excel</button>
+    <table id="materail" class="display">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Materail</th>
+          <th>Quantity</th>
+          <th>Rate</th>
+          <th>Charges Type</th>
+          <th>FixValue</th>
+          <th>Persentage</th>
+          <th>Area Sqft</th>
+          <th>Rate per Sqft</th>
+          <th>totalAmount</th>
+          <th>Payable</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<script src="../Globle/globle.js"></script>
+  <script src="materail.js">
+  
+  </script>
+</body>
+
+</html>

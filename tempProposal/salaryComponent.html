@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SALARY COMPONENT</title>
+  <link rel="stylesheet" href="salaryComponent.css" />
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <style>
+    /* Basic styles for the pop-up */
+    .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: white;
+    z-index: 1000;
+    width: 300px;  /* Fixed width */
+    max-height: 400px; /* Fixed maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="whole-container">
+    <div class="flex-container">
+      <input type="hidden" id="salaryStructureId">
+      <div class="container">
+        <h1>SALARY COMPONENT</h1>
+        <form id="storeForm">
+          <div>
+            <label for="salaryHead">Salary Head Name:</label>
+            <select id="salaryHead" name="salaryHead">
+              <option value="">Select the Salary Head</option>
+            </select>
+          </div>
+          <div>
+            <label for="computation">Computation:</label>
+            <select id="computation" name="computation">
+              <option value="pro-rated">pro-rated</option>
+              <option value="formula">formula</option>
+              <option value="slab-rate">slab-rate</option>
+              <option value="fixed-value">fixed-value</option>
+              <option value="fixed-parameter">fixed-parameter</option>
+            </select>
+          </div>
+          <div>
+            <label for="persentage">Percentage:</label>
+            <input type="number" id="persentage" name="persentage" placeholder="0" disabled />
+          </div>
+          <div>
+            <label for="formula">Formula:</label>
+            <input type="text" id="formula" name="formula" placeholder="Formula" readonly />
+            <button type="button" id="openPopup" disabled>Select Formula Parts</button>
+          </div>
+          <div>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" placeholder="amount" disabled />
+          </div>
+          <div>
+            <label for="monthlyYearly">Monthly/Yearly:</label>
+            <select id="monthlyYearly" name="monthlyYearly">
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+          <!-- Error message container -->
+          <div id="error-message" class="error"></div>
+          <!-- Success message container -->
+          <div id="success-message" class="success"></div>
+          <button type="submit" id="submit">Submit</button>
+        </form>
+      </div>
+      <div class="container">
+        <h2>SALARY STRUCTURE FOR DESIGNATION</h2>
+        <button id="exportButton">Export to Excel</button>
+        <table id="CityTable" class="display">
+          <thead>
+            <tr>
+              <th>Sr No.</th>
+              <th>Head Name</th>
+              <th>Computation</th>
+              <th>Percentage</th>
+              <th>Formula</th>
+              <th>Amount</th>
+              <th>Monthly/Yearly</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    <h2>Select Formula Parts</h2>
+    <div id="checkboxes"></div>
+    <button id="applySelection">Apply</button>
+    <button id="closePopup">Close</button>
+  </div>
+
+  <script>
+   const formulaInput = document.getElementById('formula');
+  const openPopupBtn = document.getElementById('openPopup');
+  const overlay = document.getElementById('overlay');
+  const popup = document.getElementById('popup');
+  const checkboxesDiv = document.getElementById('checkboxes');
+
+  // Replace with your actual API URL
+  const apiUrl = 'http://localhost:8080/salaryhead'; 
+
+  let apiData = []; // To hold the fetched data
+
+  // Function to fetch data from the API
+  function fetchApiData() {
+    fetch(apiUrl, {
+      headers: {
+        'Authorization': `Bearer YOUR_TOKEN` // Add your authorization token if required
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      apiData = data; // Assuming data is an array
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+      alert('Failed to load data from the API.');
+    });
+  }
+
+  // Function to render checkboxes from API data
+  function renderCheckboxes() {
+    checkboxesDiv.innerHTML = ''; // Clear existing checkboxes
+    apiData.forEach(item => {
+      const label = document.createElement('label');
+      label.innerHTML = `<input type="checkbox" value="${item.salaryHeadName}"> ${item.salaryHeadName}`;
+      checkboxesDiv.appendChild(label);
+      checkboxesDiv.appendChild(document.createElement('br'));
+    });
+  }
+
+  // Event listeners
+  openPopupBtn.addEventListener('click', () => {
+    renderCheckboxes(); // Render checkboxes on opening
+    overlay.style.display = 'block'; // Show overlay
+    popup.style.display = 'block'; // Show popup
+  });
+
+  document.getElementById('closePopup').addEventListener('click', () => {
+    overlay.style.display = 'none';
+    popup.style.display = 'none';
+  });
+
+  document.getElementById('applySelection').addEventListener('click', () => {
+    const selectedValues = Array.from(checkboxesDiv.querySelectorAll('input[type="checkbox"]:checked'))
+      .map(checkbox => checkbox.value);
+    formulaInput.value = selectedValues.join(' + '); // Update formula field
+    overlay.style.display = 'none'; // Hide overlay
+    popup.style.display = 'none'; // Hide popup
+  });
+
+  overlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    popup.style.display = 'none'; // Hide popup if overlay is clicked
+  });
+
+  // Fetch data when the page loads
+  document.addEventListener('DOMContentLoaded', fetchApiData);
+  </script>
+
+  <script src="../Globle/globle.js"></script>
+  <script src="salaryComponent.js"></script>
+</body>
+
+</html>

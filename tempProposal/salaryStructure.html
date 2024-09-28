@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SALARY COMPONENT</title>
+  <link rel="stylesheet" href="salaryStructure.css" />
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+ 
+</head>
+<body>
+  <div class="whole-container">
+    <div class="flex-container">
+      <input type="hidden" id="proposalId">
+      <div class="container">
+       
+        <h1>SALARY COMPONENT</h1>
+        <form id="storeForm">
+          <div>
+            <label for="designantionName">Designantion:</label>
+            <select id="designantionName" name="designantionName" required>
+              <option value="">Select a Designantion</option>
+            </select>
+          </div>
+          <div>
+            <label for="doutyHours">Store Name:</label>
+            <select id="doutyHours" name="doutyHours" required>
+                <option value="">Select a Duty Hours</option>
+                <option value="1">8 Hours</option>
+                <option value="2">9 Hours</option>
+            </select>
+        </div>
+          <!-- Error message container -->
+          <div id="error-message" class="error"></div>
+          <!-- Success message container -->
+          <div id="success-message" class="success"></div>
+          <button type="submit" id="submit">Submit</button>
+        </form>
+      </div>
+      <div class="container">
+        <h2>SALARY STRUCTURE FOR DESIGNATION</h2>
+        <button id="exportButton">Export to Excel</button>
+        <table id="CityTable" class="display">
+          <thead>
+            <tr>
+              <th>Sr No.</th>
+              <th>Designantion</th>
+              <th>Add Components</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+<script src="../Globle/globle.js"></script>
+  <script src="salaryStructure.js">
+  
+  </script>
+</body>
+
+</html>

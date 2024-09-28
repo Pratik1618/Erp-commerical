@@ -1,0 +1,152 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+}
+
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+.whole-container {
+  background-color: #ffffff; /* Existing background color */
+  border: none; /* Remove border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 7500px; /* Set max height */
+  overflow-y: auto; /* Vertical scrollbar if content exceeds max height */
+  padding: 20px; /* Ensure content doesn't touch the border */
+  box-sizing: border-box; 
+  border-radius: 1rem;
+}
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+form {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to the next line if necessary */
+}
+
+form div {  
+  flex: 1 1 30%; /* This ensures three entries can fit in one line */
+  margin: 10px;  /* Adjust margin for spacing */
+}
+select,
+input[type="text"],input[type="number"],input[type="time"]{
+  margin: 10px 0;
+  padding: 12px;
+  width: calc(100% - 24px);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input[type="text"]:focus ,input[type="number"]:focus,input[type="time"]:focus{
+  border-color: #0056b3;
+  outline: none;
+}
+
+#submit {
+  background-color: #0056b3;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+#submit:hover {
+  background-color: #004494;
+}
+
+.error {
+  color: #d9534f;
+  margin: 10px 0;
+  border-radius: 4px;
+
+  font-size: 14px;
+}
+
+.success {
+  color: #5bc0de;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.edit{
+  height: 20px;
+  width: 50px;
+  background-color:rgb(240, 196, 17);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.delete{
+  margin-top: 2px;
+  height: 20px;
+  width: 50px;
+  color: #ffffff;
+  background-color:rgb(244, 18, 44);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.save{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cancel{
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#exportButton{
+  height:30px;
+  width: 120px;
+  color: #ffffff;
+  background-color: rgb(44, 149, 44);
+  border: none;
+  border-radius: 5px;
+
+}
+#exportButton:hover{
+  background-color:rgb(31, 124, 31) ;
+}
+#zoneNameEdit,#stateNameEdit{
+  background-color: #aebcc8; /* Light blue background */
+  color: #333;              /* Dark text color */
+  border: 2px solid #6a5acd; /* Border color */
+ /* padding: 5px;            /* Padding inside the input field */
+  border-radius: 4px;      /* Rounded corners for the border */
+}
+
+/* Optional: Change background color when input is focused (even though it is readonly) */
+#zoneNameEdit:focus,#stateNameEdit:focus{
+  outline: none;           /* Remove default focus outline */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Optional: Shadow effect */
+}

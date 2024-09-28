@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Required Machninery</title>
+  <link rel="stylesheet" href="AddTemporal.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</head>
+
+
+<body>
+   <div class="whole-container">
+  <div class="container">
+    <input type="hidden" id="stateId">
+    <h1>Required Manpower</h1>
+    <form id="storeForm">
+      <div>
+        <label for="designantion">Designantion:</label>
+          <select id="designantion" name="designantion" required>
+            <option value="">Select a Designantion</option>
+          </select>
+
+      </div>
+      <div>
+        <label for="monthyPay">Monthly Pay:</label>
+        <input type="number" id="monthyPay" name="monthyPay" required readonly step="0.01">
+      </div>
+
+      <div></div>
+      <div>
+        <label for="shift1">Shift 1:</label>
+        <input type="number" id="shift1" name="shift1" required />
+      </div>
+      <div>
+        <label for="shift1StartTime">Shift 1 Start Time:</label>
+        <input type="time" id="shift1StartTime" name="shift1StartTime" required />
+      </div>
+      <div>
+        <label for="shift1EndTime">Shift 1 End Time:</label>
+        <input type="time" id="shift1EndTime" name="shift1EndTime" required />
+      </div>
+      <div>
+        <label for="shift2">Shift 2:</label>
+        <input type="number" id="shift2" name="shift2" required />
+      </div>
+      <div>
+        <label for="shift2StartTime">Shift 2 Start Time:</label>
+        <input type="time" id="shift2StartTime" name="shift2StartTime" required />
+      </div>
+      <div>
+        <label for="shift2EndTime">Shift 2 End Time:</label>
+        <input type="time" id="shift2EndTime" name="shift2EndTime" required />
+      </div>
+      <div>
+        <label for="shift3">Shift 3:</label>
+        <input type="number" id="shift3" name="shift3" required />
+      </div>
+      <div>
+        <label for="shift3StartTime">Shift 3 Start Time:</label>
+        <input type="time" id="shift3StartTime" name="shift3StartTime" required />
+      </div>
+      <div>
+        <label for="shift3EndTime">Shift 3 End Time:</label>
+        <input type="time" id="shift3EndTime" name="shift3EndTime" required />
+      </div>
+      <div>
+        <label for="general">General :</label>
+        <input type="number" id="general" name="general" required />
+      </div>
+      <!-- <div>
+        <label for="generalStartTime">General Start Time:</label>
+        <input type="time" id="generalStartTime" name="generalStartTime" required />
+      </div>
+      <div>
+        <label for="generalEndTime">General End Time:</label>
+        <input type="time" id="generalEndTime" name="generalEndTime" required />
+      </div> -->
+      
+      <!-- Error message container -->
+      <div id="error-message" class="error"></div>
+      <!-- Success message container -->
+      <div id="success-message" class="success"></div>
+      <button type="submit" id="submit">Submit</button>
+      <!-- <button type="button"  class="save" onclick="saveEdit()">Save</button>
+      <button type="button" class="cancel" onclick="cancelEdit()">Cancel</button> -->
+    </form>
+  </div>
+  <div class="container">
+    <h2>MATERAIL LIST</h2>
+    <button id="exportButton">Export to Excel</button>
+    <table id="materail" class="display">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Designantion</th>
+          <th>Monthly Pay</th>
+          <th>Shift 1</th>
+          <th>Shift 1 Start Time</th>
+          <th>Shift 1 End Time</th>
+          <th>Shift 2</th>
+          <th>Shift 2 Start Time</th>
+          <th>Shift 2 End Time</th>
+          <th>Shift 3</th>
+          <th>Shift 3 Start Time</th>
+          <th>Shift 3 End Time</th>
+          <th>General</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<script src="../Globle/globle.js"></script>
+  <script src="manpower.js">
+  
+  </script>
+</body>
+
+</html>

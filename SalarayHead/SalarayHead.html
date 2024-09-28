@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SALARY HEAD</title>
+  <link rel="stylesheet" href="SalarayHead.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="../NavBar/navbar.css">
+  <script src="../NavBar/navbar.js" defer></script>
+ 
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <div class="whole-container">
+  <div class="container">
+    <h1>SALARY HEAD</h1>
+    <form id="storeForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="salaryHeadCode">Salary Head Code:</label>
+          <input type="text" id ="salaryHeadCode" name="salaryHeadCode" required>
+        </div>
+        <div class="form-group">
+          <label for="salaryHeadName">Salary Head Name:</label>
+          <input type="text" id="salaryHeadName" name="salaryHeadName" required />
+        </div>
+        <div class="form-group">
+          <label for="earningAndDeduction">Earning/Deduction:</label>
+          <select id="earningAndDeduction" name="earningAndDeduction" required>
+            <option value="">Select a Earning / Deduction</option>
+            <Option value="Earning">Earning</Option>
+            <Option value="Deduction">Deduction</Option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="partOfEmployee">Part Of Employee:</label>
+          <select id="partOfEmployee" name="partOfEmployee" required>
+            <option value="">Select a Part Of Employee</option>
+            <option value="YES">YES</option>
+            <Option value="NO">NO</Option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="paySlip">Pay Slip:</label>
+          <select id="paySlip" name="paySlip" required>
+            <option value="">Select</option>
+            <Option value="Payslip">Payslip</Option>
+            <Option value="Non-Payslip">Non-Payslip</Option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row"> 
+        <div class="form-group">
+          <label for="variable">Variable:</label>
+          <select id="variable" name="variable" required>
+            <option value="">Select</option>
+            <option value="Y">YES</option>
+            <Option value="N">NO</Option>
+          </select>
+        </div>
+        <!-- <div class="form-group">
+          <label for="type">Type:</label>
+          <select id="type" name="type" required>
+            <option value="">Select store type</option>
+            <option value="HS">HS</option>
+            <option value="MALL">MALL</option>
+          </select>
+        </div> -->
+        <!-- <div class="form-group">
+          <label for="sqft">Sq. Feet:</label>
+          <input type="text" id="sqft" name="sqft" required />
+        </div> -->
+        <!-- <div class="form-group">
+          <label for="billing">Billing :</label>
+          <input type="text" id="billing" name="billing" required />
+        </div> -->
+        <!-- <div class="form-group">
+          <label for="storeMangerEmail">Store Manager Email:</label>
+          <input type="text" id="storeManagerEmail" name="storeManagerEmail" required />
+        </div> -->
+      </div>
+      
+      <!-- Error message container -->
+      <div id="error-message" class="error"></div>
+      <!-- Success message container -->
+      <div id="success-message" class="success"></div>
+      <button type="submit" id="submit">Submit</button>
+    </form>
+    <br>
+</div>
+<div class="container">
+   <div class="table-container">
+    <h2>SALARY HEAD LIST</h2>
+    <button id="exportButton">Export to Excel</button>
+    <table id="storeTable" class = "display">
+      <thead>
+        <tr>
+          <th>Head Code</th>
+          <th>Head Name</th>
+          <th>Earning/Deduction</th>
+          <th>Part Of Employee</th>
+          <th>Payslip/Non-Patslip</th>
+          <th>Variable</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="storeTableBody">
+        <!-- Rows will be populated here via JavaScript -->
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination-container">
+    <div id = "pagination" class="pagination">
+      <!-- Pagination will be populated here via JavaScript -->
+    </div>
+
+    <!-- Your existing table and pagination code -->
+     <!-- Your existing table and pagination code -->
+
+<!-- Edit Form (initially hidden) -->
+</div>
+</div>
+ </div>
+ <script src="../Globle/globle.js"></script>
+  <script src="SalarayHead.js"></script>
+</body>
+</html>

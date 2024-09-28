@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STATE INFORMATION</title>
+  <link rel="stylesheet" href="stateStyle.css" />
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="../NavBar/navbar.css">
+  <script src="../NavBar/navbar.js" defer></script>
+ 
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+   <div class="whole-container">
+  <div class="container">
+    <h1>STATE INFORMATION</h1>
+    <form id="storeForm">
+      <div>
+        <label for="zoneName">Zone Name:</label>
+        <select id="zoneName" name="zoneId" required>
+          <!-- <option value="South">Soth</option>
+          <option value="East">East</option>
+          <option value="West">West</option> -->
+          <option value="">Select a Zone</option>
+        </select>
+      </div>
+      <div>
+        <label for="stateName">State Name:</label>
+        <input type="text" id="stateName" name="stateName" required />
+      </div>
+      
+      <!-- Error message container -->
+      <div id="error-message" class="error"></div>
+      <!-- Success message container -->
+      <div id="success-message" class="success"></div>
+      <button type="submit" id="submit">Submit</button>
+    </form>
+  </div>
+  <div class="container">
+    <h2>STATE DATA LIST</h2>
+    <button id="exportButton">Export to Excel</button>
+    <table id="stateTable" class="display">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Zone Name</th>
+          <th>State Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<script src="../Globle/globle.js"></script>
+  <script src="state.js"> </script>
+</body>
+
+</html>

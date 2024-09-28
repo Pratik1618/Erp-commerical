@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MATERAIL MASTER</title>
+    <link rel="stylesheet" href="materail.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="../NavBar/navbar.css">
+  <script src="../NavBar/navbar.js" defer></script>
+  </head>
+  
+
+    <body>
+      <div id="navbar-placeholder"></div>
+    <div class="whole-container">
+      <div class="container">
+        <h1>TEMPORARY MATERAIL</h1>
+        <form id="storeForm">
+          <div>
+            <label for="materailName">Material Name:</label>
+            <input type="text" id="materailName" name="materailName" required />
+          </div>
+          <!-- Error message container -->
+          <div id="error-message" class="error"></div>
+          <!-- Success message container -->
+          <div id="success-message" class="success"></div>
+          <button type="submit" id="submit">Submit</button>
+        </form>
+      </div>
+      <div class="container">
+        <h2>MATERAIL LIST</h2>
+        <button id = "exportButton" >Export to excel</button>
+        <table id="machinerytable" class="display">
+          <thead>
+            <tr>
+              <th>Sr No</th>
+              <th>Material Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="../Globle/globle.js"></script>
+    <script src="materail.js"></script>
+    </body>
+
+</html>
