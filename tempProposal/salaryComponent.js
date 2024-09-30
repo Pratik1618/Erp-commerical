@@ -4,16 +4,18 @@ const token = localStorage.getItem('authToken');
 let salaryStructureId; // Define salaryStructureId in global scope
 let SalarayStructureDesignantion;
 let proposalId
+let designantionId;
 const urlParams = new URLSearchParams(window.location.search);
 salaryStructureId = urlParams.get('id'); // Retrieve the ID from the URL
 SalarayStructureDesignantion = urlParams.get('designation'); // Change to 'designation' to match your URL parameter
+designantionId=urlParams.get('designantionId');
 proposalId=urlParams.get('proposalId');
-
+console.log('designantionId '+designantionId);
 // Set the salaryStructureId in the hidden input (if you have one)
 document.getElementById('salaryStructureId').value = salaryStructureId; 
 
 // Update the h2 element with the designation
-document.querySelector('h2').textContent = `SALARY STRUCTURE FOR ${SalarayStructureDesignantion}`;
+document.querySelector('h2').textContent = `SALARY COMPONENTS FOR ${SalarayStructureDesignantion}`;
 
 console.log(salaryStructureId);
 console.log(SalarayStructureDesignantion);
@@ -136,10 +138,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         errorMessageElement.textContent = ""; // Clear error message
         successMessageElement.textContent = message;
+        setTimeout(() => {
+            successMessageElement.textContent = "";
+        }, 3000); // 3000 milliseconds = 3 seconds
     }
 
     // Initialize DataTable
-    const table = $("#CityTable").DataTable({
+    const table = $("#salaryComponentTable").DataTable({
         ajax: {
             url: `${api}/temp-component/salary-structureId/${salaryStructureId}`,
             dataSrc: "",
@@ -214,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window.exportToExcel = function() {
-        const url = `${api}/temp-component/excel/proposal/${proposalId}/designation/${salaryStructureId}`;
+        const url = `${api}/temp-component/excel/proposal/${proposalId}/designation/${designantionId}`;
         window.location.href = url;
     }
     

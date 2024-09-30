@@ -118,11 +118,14 @@ function displaySuccess(message) {
 
   errorMessageElement.textContent = ""; // Clear error message
   successMessageElement.textContent = message;
+  setTimeout(() => {
+    successMessageElement.textContent = "";
+}, 3000); 
 }
 
 // Function to initialize DataTable
 function initializeDataTable() {
-  const table = $("#materail").DataTable({
+  const table = $("#manpowerTabel").DataTable({
     ajax: {
       url: `${api}/temp-manpower/proposalId/${stateId}`, // Replace with your API endpoint
       dataSrc: "",

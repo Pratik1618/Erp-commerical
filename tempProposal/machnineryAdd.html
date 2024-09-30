@@ -38,18 +38,17 @@
       <div>
         <label for="charges">Charges Type:</label>
         <select id="charges" name="charges" required>
-          <option value="">Select a Charges Type</option>
           <option value="fix-value">fix-value</option>
           <option value="percentage">percentage</option>
         </select>
       </div>
       <div>
         <label for="fix-value">Fix-Value:</label>
-        <input type="number" id="fix-value" name="fix-value" required />
+        <input type="number" id="fix-value" name="fix-value" disabled />
       </div>
       <div>
         <label for="percentage">Percentage:</label>
-        <input type="number" id="percentage" name="percentage" required />
+        <input type="number" id="percentage" name="percentage" disabled />
       </div>
       <!-- Error message container -->
       <div id="error-message" class="error"></div>
@@ -63,7 +62,7 @@
   <div class="container">
     <h2>MATERAIL LIST</h2>
     <button id="exportButton">Export to Excel</button>
-    <table id="materail" class="display">
+    <table id="machineryTable" class="display">
       <thead>
         <tr>
           <th>Sr No.</th>

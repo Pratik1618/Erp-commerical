@@ -3,6 +3,28 @@ token = localStorage.getItem('authToken');
 
 let stateId; // Define stateId in global scope
 
+const chargesDropdown = document.getElementById("charges");
+        const percentageContainer = document.getElementById("percentage");
+        const fixvalueContainer = document.getElementById("fix-value");
+        function toggleFormulaVisibility() {
+        if (chargesDropdown.value === "percentage") {
+          percentageContainer.disabled = false; // Show the formula input
+            fixvalueContainer.disabled=true;
+            percentageContainer.focus();
+            fixvalueContainer.value="";
+        } else {
+            percentageContainer.disabled=true;
+            fixvalueContainer.disabled=false;
+            fixvalueContainer.focus();
+            percentageContainer.value="";
+        }
+    }
+
+    // Initial toggle on page load
+    toggleFormulaVisibility();
+
+    // Add event listener to toggle on change
+    chargesDropdown.addEventListener("change", toggleFormulaVisibility);
 const urlParams = new URLSearchParams(window.location.search);
         stateId = urlParams.get('id'); // Retrieve the ID from the URL
         document.getElementById('stateId').value = stateId; // Set the stateId in the hidden input
@@ -100,10 +122,13 @@ const urlParams = new URLSearchParams(window.location.search);
           
             errorMessageElement.textContent = ""; // Clear error message
             successMessageElement.textContent = message;
+            setTimeout(() => {
+              successMessageElement.textContent = "";
+          }, 3000); 
           }
           
           
-            const table = $("#materail").DataTable({
+            const table = $("#machineryTable").DataTable({
               ajax: {
                 url: `${api}/temp-machinery/proposalId/${stateId}`, // Replace with your API endpoint
                 dataSrc: "",

@@ -104,6 +104,9 @@ const urlParams = new URLSearchParams(window.location.search);
           
             errorMessageElement.textContent = ""; // Clear error message
             successMessageElement.textContent = message;
+            setTimeout(() => {
+              successMessageElement.textContent = "";
+          }, 3000); 
           }
           
           

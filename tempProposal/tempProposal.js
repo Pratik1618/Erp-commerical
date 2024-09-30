@@ -115,93 +115,102 @@ document.addEventListener("DOMContentLoaded", function () {
 
         errorMessageElement.textContent = ""; // Clear error message
         successMessageElement.textContent = message;
+        setTimeout(() => {
+            successMessageElement.textContent = "";
+        }, 3000); 
     }
 
     // Initialize DataTable
-        const table = $("#CityTable").DataTable({
-            ajax: {
-                url: `${api}/temp-proposal/`,
-                dataSrc: "",
-                headers: {
-                    'Authorization': `${token}`
+    const table = $("#tempProposalTable").DataTable({
+        ajax: {
+            url: `${api}/temp-proposal/`,
+            dataSrc: "",
+            headers: {
+                'Authorization': `${token}`
+            },
+        },
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return `<input type="checkbox" class="row-checkbox" data-id="${row.id}">`; // Checkbox with data-id
+                },
+            
+            },
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1; // Serial number starting from 1
+                },
+                title: "SR No",
+            },
+            { data: "client.clientName" },
+            { data: "site.siteName" },
+            { data: "surveyId" },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button class="edit" onclick="window.location.href='salaryStructure.html?id=${row.id}'">Salary</button>
+                    `;
                 },
             },
-            columns: [
-                {
-                    data: null,
-                    render: function (data, type, row, meta) {
-                        return meta.row + 1; // Serial number starting from 1
-                    },
-                    title: "SR No",
-                },
-                { data: "client.clientName" },
-                { data: "site.siteName" },
-                { data: "surveyId" },
-                {
-                    data: null,
-                    render: function (data, type, row) {
-                        return `
-                            <button class="edit" onclick="window.location.href='salaryStructure.html?id=${row.id}'">Salary</button>
-                        `;
-                    },
-                },
-                {
-                    data: null,
-                    render: function (data, type, row) {
-                        return `
-                            <button class="edit" onclick="window.location.href='manpower.html?id=${row.id}'">ManPower</button>
-                        `;
-                    },
-                },
-                {
-                    data: null,
-                    render: function (data, type, row) {
-                        return `
-                            <button class="edit" onclick="window.location.href='machnineryAdd.html?id=${row.id}'">Machniery</button>
-
-                        `;
-                    },
-                },
-                {
-                    data: null,
-                    render: function (data, type, row) {
-                        return `
-                           <button class="edit" onclick="window.location.href='materail.html?id=${row.id}'">Material</button>
-                          `;
-                    },
-                },
-                {
-                    data: null,
-                    render: function (data, type, row) {
-                        return `
-                            <button class="edit" onclick="window.location.href='gstManagemt.html?id=${row.id}'">GST & Mgmt Fee</button>
-                        `;
-                    },
-                },
-                {
-                    data: null,
-                    render: function (data, type, row) {
-                        return `
-                            <button class="delete" onclick="deleteCity(${row.id})">Delete</button>
-                        `;
-                    },
-                },
-            ],
-            searching: true,
-            paging: true,
-            info: true,
-            pageLength: 5, // Number of entries per page
-      lengthMenu: [5, 10, 25, 50, 100,200,300,400,500], // Options for page length
-            language: {
-                search: "Search:",
-                info: "Showing _START_ to _END_ of _TOTAL_ entries",
-                paginate: {
-                    previous: "Previous",
-                    next: "Next",
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button class="edit" onclick="window.location.href='manpower.html?id=${row.id}'">ManPower</button>
+                    `;
                 },
             },
-        });
-
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button class="edit" onclick="window.location.href='machnineryAdd.html?id=${row.id}'">Machinery</button>
+                    `;
+                },
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                       <button class="edit" onclick="window.location.href='materail.html?id=${row.id}'">Material</button>
+                      `;
+                },
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button class="edit" onclick="window.location.href='gstManagemt.html?id=${row.id}'">GST & Mgmt Fee</button>
+                    `;
+                },
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button class="delete" onclick="deleteCity(${row.id})">Delete</button>
+                    `;
+                },
+            },
+        ],
+        searching: true,
+        paging: true,
+        info: true,
+        pageLength: 5, // Number of entries per page
+        lengthMenu: [5, 10, 25, 50, 100, 200, 300, 400, 500], // Options for page length
+        language: {
+            search: "Search:",
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+            paginate: {
+                previous: "Previous",
+                next: "Next",
+            },
+        },
+    });
+    
     // Handle delete operation
     window.deleteCity = function (id) {
         if (confirm("Are you sure you want to delete this city?")) {
@@ -224,14 +233,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch((error) => console.error("Error deleting city:", error));
         }
     };
-
+    
     // Handle export to Excel
     document.getElementById("exportButton").addEventListener("click", function () {
         exportToExcel();
     });
-
+    
     window.exportToExcel = function() {
-        const url = `${api}/city/excel?token=${encodeURIComponent(token)}`;
-        window.location.href = url;
-    }
-});
+        const selectedIds = [];
+        // Get all checked checkboxes and extract their IDs
+        document.querySelectorAll('.row-checkbox:checked').forEach(checkbox => {
+            selectedIds.push(checkbox.getAttribute('data-id'));
+        });
+    
+        if (selectedIds.length > 0) {
+            const idsParam = selectedIds.join(',');
+            const url = `${api}/costsheet/excel/proposal?propIds=${encodeURIComponent(idsParam)}&token=${encodeURIComponent(token)}`;
+            console.log(url);
+            window.location.href = url;
+        } else {
+            alert("Please select at least one Report to export.");
+        }
+    };
+}
+);

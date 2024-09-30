@@ -71,6 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     errorMessageElement.textContent = ""; // Clear error message
     successMessageElement.textContent = message;
+    setTimeout(() => {
+      successMessageElement.textContent = "";
+  }, 3000); 
   }
 
   console.log(stateId);

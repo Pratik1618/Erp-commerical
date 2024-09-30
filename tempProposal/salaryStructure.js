@@ -92,12 +92,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         errorMessageElement.textContent = ""; // Clear error message
         successMessageElement.textContent = message;
+        
+        setTimeout(() => {
+            successMessageElement.textContent = "";
+        }, 3000); 
     }
     
 
     console.log("Proposal ID:", proposalId);
     // Initialize DataTable
-    const table = $("#CityTable").DataTable({
+    const table = $("#salaryStructureTable").DataTable({
         ajax: {
             url: `${api}/temp-salary/proposal/${proposalId}`,
             dataSrc: "",
@@ -119,9 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 render: function (data, type, row) {
                     const id = row.id;
                     const designationName = encodeURIComponent(row.tempDesignation.designationName);
-
+                    const designantionId =encodeURIComponent(row.tempDesignation.id);
                     return `
-                        <button class="edit" onclick="window.location.href='salaryComponent.html?id=${id}&designation=${designationName}&proposalId=${proposalId}'">Add Component</button>
+                        <button class="edit" onclick="window.location.href='salaryComponent.html?id=${id}&designation=${designationName}&proposalId=${proposalId}&designantionId=${designantionId}'">Add Component</button>
                       `;
                 },
             },
