@@ -245,4 +245,11 @@ body {
     outline: none;           /* Remove default focus outline */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Optional: Shadow effect */
   }
+  /* .salary {
+    border: none;
+    outline: none; 
+    background: transparent;
+    padding: 5px; 
+    font-size: 14px; 
+} */
   

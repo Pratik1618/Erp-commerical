@@ -59,10 +59,20 @@ function fetchCTC(proposalId, designationId) {
     })
     .then(response => response.json())
     .then(data => {
-        if (data !== undefined && !isNaN(data)) {
-            document.getElementById("ctc").value = parseFloat(data).toFixed(2);
+        console.log(data)
+        if (data.ctc !== undefined && !isNaN(data.ctc)) {
+            document.getElementById("ctc").value = parseFloat(data.ctc).toFixed(2);
+            document.getElementById("deduction").value = parseFloat(data.deduction).toFixed(2);
+            document.getElementById("net").value = parseFloat(data.net).toFixed(2);
+            document.getElementById("staturyDeduction").value = parseFloat(data.staturyDeduction).toFixed(2);
+            document.getElementById("gross").value = parseFloat(data.gross).toFixed(2);
+
         } else {
             document.getElementById("ctc").value = '';
+            document.getElementById("deduction").value = '';
+            document.getElementById("net").value = '';
+            document.getElementById("staturyDeduction").value = '';
+            document.getElementById("gross").value = '';
             console.error("Monthly pay is undefined or not a number.");
         }
     })

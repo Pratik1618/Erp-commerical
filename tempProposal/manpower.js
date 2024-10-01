@@ -38,8 +38,8 @@ function fetchMonthlyPay(selectedDesignationId) {
       console.log(data); // Log the response for debugging
 
       // Assuming the response is a single value (e.g., 3000.0)
-      if (data !== undefined && !isNaN(data)) {
-        document.getElementById("monthyPay").value = parseFloat(data).toFixed(2); // Set value if valid
+      if (data.ctc !== undefined && !isNaN(data.ctc)) {
+        document.getElementById("monthyPay").value = parseFloat(data.ctc).toFixed(2); // Set value if valid
       } else {
         document.getElementById("monthyPay").value = ''; // Clear if invalid
         console.error("Monthly pay is undefined or not a number.");
