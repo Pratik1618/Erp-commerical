@@ -21,11 +21,28 @@
     <h1>Required Material </h1>
     <form id="storeForm">
       <div>
+        <label for="materailRequire">Is Materail Required:</label>
+        <select id="materailRequire" name="materailRequire" required>
+          <option value="false">No</option>
+          <option value="true">Yes</option>
+        </select>
+      </div>
+      <div>
         <label for="materailName">Materail Name:</label>
           <select id="materailName" name="materailName" required>
             <option value="">Select a Materail</option>
           </select>
 
+      </div>
+      <div>
+        <label for="unit">Unit:</label>
+        <select id="unit" name="unit" required>
+          <option value="">Select a Unit Type</option>
+          <option value="litter">litter</option>
+          <option value="kg">kg</option>
+          <option value="ml">ml</option>
+          <option value="can">can</option>
+        </select>
       </div>
       <div>
         <label for="quantity">Quantity:</label>
@@ -39,9 +56,10 @@
         <label for="charges">Charges Type:</label>
         <select id="charges" name="charges" required>
           <option value="">Select a Charges Type</option>
-          <option value="fix-value">fix-value</option>
+          <option value="fix-value">fix-value/budget-value</option>
           <option value="percentage">percentage</option>
-          <option value="Rate/sqft">Rate/sqft</option>
+          <option value="Rate/sqft">rate/sqft</option>
+          <option value="atactual">at-actual</option>
         </select>
       </div>
       <div>

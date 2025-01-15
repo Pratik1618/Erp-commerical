@@ -21,6 +21,16 @@ console.log(salaryStructureId);
 console.log(SalarayStructureDesignantion);
 console.log(proposalId);
 // Fetch clients and handle form submission
+const select =document.getElementById('salaryHead');
+const computation=document.getElementById("computation").value;
+const persentage=document.getElementById("persentage").value;
+const formula=document.getElementById("formula").value;
+const selectedText = select.options[select.selectedIndex].text;
+if (selectedText === "PF"&&computation==="formula") {
+    persentage=12;
+    formula="BASIC+DA"
+    
+  }
 document.addEventListener("DOMContentLoaded", function () {
     function CalculatedSalaray(){
     fetch(`${api}/temp-component/getctc/proposal/${proposalId}/designation/${designantionId}`, {

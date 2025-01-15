@@ -183,7 +183,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 data: null,
                 render: function (data, type, row) {
                     return `
-                        <button class="edit" onclick="window.location.href='gstManagemt.html?id=${row.id}'">GST & Mgmt Fee</button>
+                        <button class="edit" onclick="window.location.href='gstManagemt.html?id=${row.id}'">Mgmt Fee</button>
+                    `;
+                },
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button class="edit" onclick="window.location.href='gst.html?id=${row.id}'">GST</button>
+                    `;
+                },
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button class="edit" onclick="window.location.href='propAdditionDetect.html?id=${row.id}'">Addition Details</button>
                     `;
                 },
             },

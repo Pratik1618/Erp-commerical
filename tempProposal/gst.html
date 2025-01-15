@@ -18,29 +18,16 @@
    <div class="whole-container">
   <div class="container">
     <input type="hidden" id="stateId">
-    <h1>Management Fees</h1>
+    <h1>GST</h1>
     <form id="storeForm">
-     
+      
       <div>
-        <label for="managemntFee">Management Fee type:</label>
-        <select id="unit" name="unit" required>
-          <option value="">Select a Fee type</option>
-          <option value="fix-value">fix-value</option>
-          <option value="persentage">persentage</option>
-          <option value="perPersen">Per- Person</option>
-        </select>
+        <label for="cgst">CGST:</label>
+        <input type="number" id="cgst" name="cgst" value="9" required />
       </div>
       <div>
-        <label for="fix-value">Fix-value:</label>
-        <input type="number" id="fix-value" name="fix-value" required />
-      </div>
-      <div>
-        <label for="percentage">Percentage:</label>
-        <input type="number" id="percentage" name="percentage" required />
-      </div>
-      <div>
-        <label for="perperson">Per- Person %:</label>
-        <input type="number" id="perperson" name="perperson" required />
+        <label for="gst">GST:</label>
+        <input type="number" id="gst" name="gst" value="9" required />
       </div>
       <!-- Error message container -->
       <div id="error-message" class="error"></div>
@@ -52,16 +39,14 @@
     </form>
   </div>
   <div class="container">
-    <h2>Management Fees</h2>
+    <h2>GST & Management Fees</h2>
     <button id="exportButton">Export to Excel</button>
     <table id="material" class="display">
       <thead>
         <tr>
           <th>Sr No.</th>
-          <th>Fee Type</th>
-          <th>Fix-value</th>
-          <th>Percentage</th>
-          <th>Per-Person</th>
+          <th>CGST</th>
+          <th>GST</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -69,7 +54,7 @@
   </div>
 </div>
 <script src="../Globle/globle.js"></script>
-  <script src="gstManagemt.js">
+  <script src="gst.js">
   
   </script>
   
